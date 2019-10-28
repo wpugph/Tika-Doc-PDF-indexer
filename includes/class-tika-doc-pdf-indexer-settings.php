@@ -132,7 +132,7 @@ class Tika_Doc_PDF_Indexer_Settings {
 	private function settings_fields() {
 
 		$settings['standard'] = array(
-			'description' => __( 'Essential settings that will make the PDF Doc Indexer will work.', 'tika-doc-pdf-indexer' ),
+			'description' => __( 'Essential settings that will make the PDF Doc Indexer work.', 'tika-doc-pdf-indexer' ),
 			'fields'      => array(
 				array(
 					'id'          => 'java_location',
@@ -282,8 +282,8 @@ class Tika_Doc_PDF_Indexer_Settings {
 				$html .= ob_get_clean();
 
 				$html     .= '<p class="submit">' . "\n";
-					$html .= '<input type="hidden" name="tab" value="' . esc_attr( $tab ) . '" />' . "\n";
-					$html .= '<input name="Submit" type="submit" class="button-primary" value="' . esc_attr( __( 'Save Settings', 'tika-doc-pdf-indexer' ) ) . '" />' . "\n";
+					$html .= '<input type="hidden" name="tab" value="' . sanitize_text_field( $tab ) . '" />' . "\n";
+					$html .= '<input name="Submit" type="submit" class="button-primary" value="' . sanitize_text_field( __( 'Save Settings', 'tika-doc-pdf-indexer' ) ) . '" />' . "\n";
 				$html     .= '</p>' . "\n";
 			$html         .= '</form>' . "\n";
 		$html             .= '</div>' . "\n";

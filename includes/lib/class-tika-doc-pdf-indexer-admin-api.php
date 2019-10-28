@@ -203,7 +203,7 @@ class Tika_Doc_PDF_Indexer_Admin_API {
 
 			default:
 				if ( ! $post ) {
-					$html .= '<label for="' . esc_attr( $field['id'] ) . '">' . "\n";
+					$html .= '<label for="' . esc_html( $field['id'] ) . '">' . "\n";
 				}
 
 				$html .= '<span class="description">' . $field['description'] . '</span>' . "\n";
@@ -218,7 +218,7 @@ class Tika_Doc_PDF_Indexer_Admin_API {
 			return $html;
 		}
 
-		echo $html; //phpcs:ignore
+		echo esc_html( $html );
 
 	}
 
@@ -233,7 +233,7 @@ class Tika_Doc_PDF_Indexer_Admin_API {
 
 		switch ( $type ) {
 			case 'text':
-				$data = esc_attr( $data );
+				$data = sanitize_text_field( $data );
 				break;
 			case 'url':
 				$data = esc_url( $data );
@@ -321,7 +321,7 @@ class Tika_Doc_PDF_Indexer_Admin_API {
 
 		$field = '<p class="form-field"><label for="' . $field['id'] . '">' . $field['label'] . '</label>' . $this->display_field( $field, $post, false ) . '</p>' . "\n";
 
-		echo $field; //phpcs:ignore
+		echo esc_html( $field );
 	}
 
 	/**

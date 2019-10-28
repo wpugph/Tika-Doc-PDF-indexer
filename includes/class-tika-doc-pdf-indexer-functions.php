@@ -102,16 +102,16 @@ function tdpi_restrict_mimetypes( $mimes ) {
 
 	$allowed_array = array();
 	if ( in_array( 'pdf', $allowed, true ) ) {
-		$allowed_array[ 'pdf' ] = 'application/pdf';
+		$allowed_array['pdf'] = 'application/pdf';
 	}
 	if ( in_array( 'txt', $allowed, true ) ) {
-		$allowed_array[ 'txt' ] = 'text/plain';
+		$allowed_array['txt'] = 'text/plain';
 	}
 	if ( in_array( 'doc', $allowed, true ) ) {
-		$allowed_array[ 'doc' ] = 'application/msword';
+		$allowed_array['doc'] = 'application/msword';
 	}
 	global $post_type;
-	if ( 'tdpi_doc' == $post_type ) {
+	if ( 'tdpi_doc' === $post_type ) {
 		$mimes = $allowed_array;
 	}
 	return $mimes;
@@ -126,9 +126,8 @@ add_filter( 'upload_mimes', 'tdpi_restrict_mimetypes' );
  */
 function tdpi_file_upload() {
 	global $post;
-	echo '<input type="hidden" name="tdpi_nonce" id="tdpi_nonce" value="' .
-	esc_attr( wp_create_nonce( plugin_basename( __FILE__ ) ) ) .
-	'" />';
+	$nonce = sanitize_text_field( wp_create_nonce( plugin_basename( __FILE__ ) ) );
+	echo '<input type="hidden" name="tdpi_nonce" id="tdpi_nonce" value="' . esc_html( $nonce ) . '" />';
 	global $wpdb;
 	$filename   = get_post_meta( $post->ID, $key = 'tdpi_file', true );
 	$media_file = get_post_meta( $post->ID, $key = '_wp_attached_file', true );
@@ -280,4 +279,4 @@ add_action( 'save_post', 'tdpi_save_tika_meta', 1, 2 );
 // eliminate unneecessary functions
 // on upload existing file, attach data.
 // make the upload file required
-// default to upload and restric from selcting uploaded file or the recent file should be indexed
+// default to upload and restric from selcting uploaded file or the recent file should be indexed.
