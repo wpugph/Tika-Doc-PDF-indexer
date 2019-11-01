@@ -272,20 +272,25 @@ class Tika_Doc_PDF_Indexer {
 		update_option( $this->_token . '_version', $this->_version );
 	} // End _log_version_number ()
 
+	/**
+	 * Register document post type.
+	 *
+	 * @return void
+	 */
 	public function register_doc_postype() {
-		$options = array(
+		$options     = array(
 			'menu_icon' => 'dashicons-media-document',
 			'supports'  => array( 'title', 'thumbnail' ),
 		);
 		$description = '';
 
 		$this->register_post_type(
-			'tdpi_doc', 
-			__( 'Documents', 'tika-doc-pdf-indexer' ), 
+			'tdpi_doc',
+			__( 'Documents', 'tika-doc-pdf-indexer' ),
 			__( 'Document', 'tika-doc-pdf-indexer' ),
 			$description,
 			$options
-		);		
+		);
 	}
 
 	/**
@@ -315,7 +320,6 @@ class Tika_Doc_PDF_Indexer {
 		// Load admin JS & CSS.
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
-		
 
 		// Load API for generic admin functions.
 		if ( is_admin() ) {

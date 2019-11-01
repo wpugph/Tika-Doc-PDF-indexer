@@ -102,13 +102,13 @@ function tdpi_restrict_mimetypes( $mimes ) {
 
 	$allowed_array = array();
 	if ( in_array( 'pdf', $allowed, true ) ) {
-		$allowed_array['pdf'] = 'application/pdf';
+		$allowed_array['pdf'] = array( 'application/pdf' );
 	}
 	if ( in_array( 'txt', $allowed, true ) ) {
-		$allowed_array['txt'] = 'text/plain';
+		$allowed_array['txt'] = array( 'text/plain' );
 	}
 	if ( in_array( 'doc', $allowed, true ) ) {
-		$allowed_array['doc'] = 'application/msword';
+		$allowed_array['doc'] = array( 'application/msword' );
 	}
 	global $post_type;
 	if ( 'tdpi_doc' === $post_type ) {
@@ -280,3 +280,4 @@ add_action( 'save_post', 'tdpi_save_tika_meta', 1, 2 );
 // on upload existing file, attach data.
 // make the upload file required
 // default to upload and restric from selcting uploaded file or the recent file should be indexed.
+// Settings should file checks if correct or existing..

@@ -22,6 +22,54 @@ class Tika_Doc_PDF_Indexer_Admin_API {
 	}
 
 	/**
+	 * Allowed html.
+	 *
+	 * @var array
+	 */
+	public $allowed_htmls = [
+		'a'      => [
+			'href'  => [],
+			'title' => [],
+		],
+		'input'  => [
+			'id'          => [],
+			'type'        => [],
+			'name'        => [],
+			'placeholder' => [],
+			'value'       => [],
+		],
+		'select' => [
+			'id'          => [],
+			'type'        => [],
+			'name'        => [],
+			'placeholder' => [],
+			'value'       => [],
+			'multiple'    => [],
+		],
+		'option' => [
+			'id'          => [],
+			'type'        => [],
+			'name'        => [],
+			'placeholder' => [],
+			'value'       => [],
+			'multiple'    => [],
+			'selected'    => [],
+		],
+		'label'  => [
+			'for'   => [],
+			'title' => [],
+		],
+		'span'   => [
+			'class' => [],
+			'title' => [],
+		],
+		'br'     => [],
+		'em'     => [],
+		'strong' => [],
+
+	];
+
+	/**
 	 * Generate HTML for displaying fields.
 	 *
 	 * @param  array   $data Data array.
@@ -171,16 +219,6 @@ class Tika_Doc_PDF_Indexer_Admin_API {
 				$html .= '<input id="' . $option_name . '" class="image_data_field" type="hidden" name="' . $option_name . '" value="' . $data . '"/><br/>' . "\n";
 				break;
 
-			case 'color':
-				//phpcs:disable
-				?><div class="color-picker" style="position:relative;">
-					<input type="text" name="<?php esc_attr_e( $option_name ); ?>" class="color" value="<?php esc_attr_e( $data ); ?>" />
-					<div style="position:absolute;background:#FFF;z-index:99;border-radius:100%;" class="colorpicker"></div>
-				</div>
-				<?php
-				//phpcs:enable
-				break;
-
 			case 'editor':
 				wp_editor(
 					$data,
@@ -218,8 +256,7 @@ class Tika_Doc_PDF_Indexer_Admin_API {
 			return $html;
 		}
 
-		echo esc_html( $html );
-
+		echo wp_kses( $html, $this->allowed_htmls );
 	}
 
 	/**
@@ -345,8 +382,10 @@ class Tika_Doc_PDF_Indexer_Admin_API {
 		}
 
 		foreach ( $fields as $field ) {
-			if ( isset( $_REQUEST[ $field['id'] ] ) ) { //phpcs:ignore
-				update_post_meta( $post_id, $field['id'], $this->validate_field( $_REQUEST[ $field['id'] ], $field['type'] ) ); //phpcs:ignore
+			if ( isset( $_REQUEST[ $field['id'] ] ) ) {
+				if ( wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST[ $field['id'] ] ) ) ) ) {
+					update_post_meta( $post_id, $field['id'], $this->validate_field( wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST[ $field['id'] ], $field['type'] ) ) ) ) );
+				}
 			} else {
 				update_post_meta( $post_id, $field['id'], '' );
 			}

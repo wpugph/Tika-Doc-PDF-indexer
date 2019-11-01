@@ -51,6 +51,91 @@ class Tika_Doc_PDF_Indexer_Settings {
 	public $settings = array();
 
 	/**
+	 * Allowed html.
+	 *
+	 * @var array
+	 */
+	public $allowed_htmls_form = [
+		'a'      => [
+			'href'  => [],
+			'title' => [],
+		],
+		'input'  => [
+			'id'          => [],
+			'type'        => [],
+			'name'        => [],
+			'placeholder' => [],
+			'value'       => [],
+			'class'       => [],
+		],
+		'select' => [
+			'id'          => [],
+			'type'        => [],
+			'name'        => [],
+			'placeholder' => [],
+			'value'       => [],
+			'multiple'    => [],
+		],
+		'option' => [
+			'id'          => [],
+			'type'        => [],
+			'name'        => [],
+			'placeholder' => [],
+			'value'       => [],
+			'multiple'    => [],
+			'selected'    => [],
+		],
+		'label'  => [
+			'for'   => [],
+			'title' => [],
+		],
+		'span'   => [
+			'class' => [],
+			'title' => [],
+		],
+		'div'    => [
+			'class' => [],
+			'id'    => [],
+		],
+		'table'  => [
+			'scope' => [],
+			'title' => [],
+			'class' => [],
+			'role'  => [],
+		],
+		'tbody'  => [
+			'scope' => [],
+			'title' => [],
+			'class' => [],
+			'role'  => [],
+		],
+		'th'     => [
+			'scope' => [],
+			'title' => [],
+		],
+		'tr'     => [],
+		'td'     => [],
+		'p'      => [],
+		'br'     => [],
+		'h2'     => [],
+		'em'     => [],
+		'strong' => [],
+		'th'     => [],
+		'form'   => [
+			'method'      => [],
+			'type'        => [],
+			'name'        => [],
+			'placeholder' => [],
+			'value'       => [],
+			'multiple'    => [],
+			'selected'    => [],
+			'action'      => [],
+			'enctype'     => [],
+		],
+
+	];
+
+	/**
 	 * Constructor function.
 	 *
 	 * @param object $parent Parent object.
@@ -195,17 +280,7 @@ class Tika_Doc_PDF_Indexer_Settings {
 		if ( is_array( $this->settings ) ) {
 
 			// Check posted/selected tab.
-			//phpcs:disable
 			$current_section = '';
-			if ( isset( $_POST['tab'] ) && $_POST['tab'] ) {
-				$current_section = $_POST['tab'];
-			} else {
-				if ( isset( $_GET['tab'] ) && $_GET['tab'] ) {
-					$current_section = $_GET['tab'];
-				}
-			}
-			//phpcs:enable
-
 			foreach ( $this->settings as $section => $data ) {
 
 				if ( $current_section && $current_section !== $section ) {
@@ -256,8 +331,8 @@ class Tika_Doc_PDF_Indexer_Settings {
 	 * @return void
 	 */
 	public function settings_section( $section ) {
-		$html = '<p> ' . $this->settings[ $section['id'] ]['description'] . '</p>' . "\n";
-		echo $html; //phpcs:ignore
+		$html = $this->settings[ $section['id'] ]['description'] . "\n";
+		echo esc_html( $html );
 	}
 
 	/**
@@ -288,7 +363,7 @@ class Tika_Doc_PDF_Indexer_Settings {
 			$html         .= '</form>' . "\n";
 		$html             .= '</div>' . "\n";
 
-		echo $html; //phpcs:ignore
+		echo wp_kses( $html, $this->allowed_htmls_form );
 	}
 
 	/**
