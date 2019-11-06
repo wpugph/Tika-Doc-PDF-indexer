@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Tika Doc PDF indexer
- * Version: 1.0.0
+ * Version: 1.0.1
  * Plugin URI: https://wordpress.org/plugins/tika-odc-pdf-indexer/
  * Description: This indexes your Docs or PDFs into meta datas when uploaded. Based on Apache Tika.
  * Author: Carl Alberto
@@ -53,7 +53,7 @@ require_once 'includes/lib/class-tika-doc-pdf-indexer-post-type.php';
  * @return object Tika_Doc_PDF_Indexer
  */
 function tika_doc_pdf_indexer() {
-	$instance = Tika_Doc_PDF_Indexer::instance( __FILE__, '1.0.0' );
+	$instance = Tika_Doc_PDF_Indexer::instance( __FILE__, '1.0.1' );
 
 	if ( is_null( $instance->settings ) ) {
 		$instance->settings = Tika_Doc_PDF_Indexer_Settings::instance( $instance );
