@@ -53,7 +53,7 @@ require_once 'includes/lib/class-tika-doc-pdf-indexer-post-type.php';
  * @return object Tika_Doc_PDF_Indexer
  */
 function tika_doc_pdf_indexer() {
-	$instance = Tika_Doc_PDF_Indexer::instance( __FILE__, '1.0.2' );
+	$instance = Tika_Doc_PDF_Indexer::instance( __FILE__, '1.0.3' );
 
 	if ( is_null( $instance->settings ) ) {
 		$instance->settings = Tika_Doc_PDF_Indexer_Settings::instance( $instance );

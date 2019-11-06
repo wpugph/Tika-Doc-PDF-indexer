@@ -312,7 +312,7 @@ class Tika_Doc_PDF_Indexer {
 	 * @param string $file File constructor.
 	 * @param string $version Plugin version.
 	 */
-	public function __construct( $file = '', $version = '1.0.2' ) {
+	public function __construct( $file = '', $version = '1.0.3' ) {
 		$this->_version = $version;
 		$this->_token   = 'tika_doc_pdf_indexer';
 
