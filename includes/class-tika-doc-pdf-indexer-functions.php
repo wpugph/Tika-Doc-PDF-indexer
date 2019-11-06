@@ -19,6 +19,7 @@ add_action( 'add_attachment', 'tdpi_extract_data' );
  */
 function tdpi_extract_data( $post_id ) {
 
+	// TODO: immediately exit if not supported cpt.
 	global $wpdb;
 	$java            = get_option( 'tdpi_java_location', '/usr/bin/java' );
 	$tika            = get_option( 'tdpi_tika_jar_location', '/srv/bin/tika-app-1.18.jar' );
@@ -40,23 +41,22 @@ function tdpi_extract_data( $post_id ) {
 	$middle   = strpos( $url, $wp_content_path );
 	$filename = strstr( $url, $wp_content_path, false );
 
-	$tika_loc = get_option( 'tdpi_supported_ext' );
-
-	write_log( $tika_loc );
-	write_log( $filename );
-	write_log( $wp_content_path );
-	write_log( wp_basename( $url ) );
-
 	$abs_path = $wp_base . $filename;
 	$command  = $java . ' -jar ' . $tika . ' -t ' . $abs_path;
 
 	$og = ini_get( 'max_execution_time' );
 	set_time_limit( 60 );
 
+	$tika_loc = get_option( 'tdpi_supported_ext' );
+	write_log( $middle );
+	write_log( $filename );
+	write_log( $abs_path );
+	write_log( $url );
+
 	$descriptorspec = array(
 		0 => array( 'pipe', 'r' ),
 		1 => array( 'pipe', 'w' ),
-		2 => array( 'file', '/tmp/error-output.txt', 'a' ),
+		2 => array( 'file', '/tmp/error-output.txt', 'a' ), // TODO: add custom error logging location.
 	);
 	// phpcs:disable -- Process handling by Tika
 	$process        = proc_open( $command, $descriptorspec, $pipes );
@@ -71,16 +71,49 @@ function tdpi_extract_data( $post_id ) {
 	$tika_data    = $file_data;
 	set_time_limit( $og );
 
-	// Save metadata to parentid.
-	$parentid = wp_get_post_parent_id( $post_id );
-	$my_post  = array(
-		'ID'           => $parentid,
+	if ( get_post_type( $post_id ) === 'tdpi_doc' ) {
+		$parentid = wp_get_post_parent_id( $post_id );
+		tdpi_save_indexed_data( $parentid, $tika_data );
+	} elseif ( get_post_type( $post_id ) === 'attachment' ) {
+		$is_enabled_tdpi_solr_override = get_option( 'tdpi_index_attachments', 'on' );
+		if ( 'on' === $is_enabled_tdpi_solr_override ) {
+			tdpi_save_indexed_data( $post_id, $tika_data );
+		}
+	}
+
+}
+
+add_action( 'add_meta_boxes', 'tdpi_add_upload_file_metaboxes' );
+
+/**
+ * Save indexed data to post id.
+ *
+ * @param [type] $post_id post id.
+ * @param [type] $tika_data extracted tika data.
+ * @return void
+ */
+function tdpi_save_indexed_data( $post_id, $tika_data ) {
+	$my_post = array(
+		'ID'           => $post_id,
 		'post_content' => $tika_data,
 	);
 	wp_update_post( $my_post );
 }
 
-add_action( 'add_meta_boxes', 'tdpi_add_upload_file_metaboxes' );
+/**
+ * Enables the Solr indexing in all attachments.
+ *
+ * @return array
+ */
+function get_post_statuses_override() {
+	return array( 'inherit', 'publish' );
+}
+
+$is_enabled_tdpi_solr_override = get_option( 'tdpi_index_attachments', 'on' );
+
+if ( 'on' === $is_enabled_tdpi_solr_override ) {
+	add_filter( 'solr_post_status', 'get_post_statuses_override' );
+}
 
 /**
  * Adds an upload metabox.

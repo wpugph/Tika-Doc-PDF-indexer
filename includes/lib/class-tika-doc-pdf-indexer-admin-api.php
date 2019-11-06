@@ -37,6 +37,7 @@ class Tika_Doc_PDF_Indexer_Admin_API {
 			'name'        => [],
 			'placeholder' => [],
 			'value'       => [],
+			'checked'     => [],
 		],
 		'select' => [
 			'id'          => [],

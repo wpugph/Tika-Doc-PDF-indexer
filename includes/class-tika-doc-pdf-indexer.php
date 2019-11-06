@@ -21,7 +21,7 @@ class Tika_Doc_PDF_Indexer {
 	 * @access  private
 	 * @since   1.0.0
 	 */
-	private static $_instance = null; //phpcs:ignore
+	private static $instance = null;
 
 	/**
 	 * Settings class object
@@ -226,10 +226,10 @@ class Tika_Doc_PDF_Indexer {
 	 * @return Main Tika_Doc_PDF_Indexer instance
 	 */
 	public static function instance( $file = '', $version = '1.0.0' ) {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self( $file, $version );
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self( $file, $version );
 		}
-		return self::$_instance;
+		return self::$instance;
 	} // End instance ()
 
 	/**
@@ -258,7 +258,7 @@ class Tika_Doc_PDF_Indexer {
 	 * @return  void
 	 */
 	public function install() {
-		$this->_log_version_number();
+		$this->log_version_number();
 	} // End install ()
 
 	/**
@@ -268,9 +268,9 @@ class Tika_Doc_PDF_Indexer {
 	 * @since   1.0.0
 	 * @return  void
 	 */
-	private function _log_version_number() { //phpcs:ignore
+	private function log_version_number() {
 		update_option( $this->_token . '_version', $this->_version );
-	} // End _log_version_number ()
+	} // End log_version_number ()
 
 	/**
 	 * Register document post type.
@@ -294,6 +294,19 @@ class Tika_Doc_PDF_Indexer {
 	}
 
 	/**
+	 * Enables the document cpt.
+	 *
+	 * @return void
+	 */
+	public function enable_doc_cpt() {
+		$is_enable_tdpi_cpt = get_option( 'tdpi_enable_tdpi_cpt', '' );
+
+		if ( 'on' === $is_enable_tdpi_cpt ) {
+			$this->register_doc_postype();
+		}
+	}
+
+	/**
 	 * Constructor funtion.
 	 *
 	 * @param string $file File constructor.
@@ -313,20 +326,12 @@ class Tika_Doc_PDF_Indexer {
 
 		register_activation_hook( $this->file, array( $this, 'install' ) );
 
-		// Load frontend JS & CSS.
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 10 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
-
-		// Load admin JS & CSS.
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
-
 		// Load API for generic admin functions.
 		if ( is_admin() ) {
 			$this->admin = new Tika_Doc_PDF_Indexer_Admin_API();
 		}
 
-		$this->register_doc_postype();
+		$this->enable_doc_cpt();
 
 		// Handle localisation.
 		$this->load_plugin_textdomain();

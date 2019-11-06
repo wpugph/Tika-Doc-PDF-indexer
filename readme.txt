@@ -9,7 +9,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-This creates a custom post type and let you upload your documents. Once a doc extract the text from it and put it in the wp_content table. This utilizes the Apache Tika Project https://tika.apache.org/ and this should be installed in your server.
+This plugin will automatically index pdf uploaded files from the media manager. Plugin requires Tika installation and Java binaries to run properly. Default configuration works well in Pantheon as all minimum requirements are installed by default.
+
+This plugin will enable the indexing all attached PDFs automaticall and works well in conjunction with the Pantheon Solr plugin https://wordpress.org/plugins/solr-power/
 
 == Installation ==
 
@@ -23,10 +25,10 @@ Installing "Tika Doc PDF Indexer" can be done either by searching for "Tika Doc 
 
 After plugin installation:
 
-1. Make sure the plugin has the correct path to the Tika installation and Java installation
-2. Add a new document
-3. Attach a document by uploading a valid file that can be read by Tika
-4. Text data will be saved in the wp_content column
+1. Make sure the plugin has the correct path to the Tika installation and Java installation.
+2. Upload PDF files via the media manager.
+3. All extracted data from the Attachment Post Type will be saved in the wp_content column.
+4. If using the Pantheon Solr plugin, it will be automatically indexed by default whenever a supported file type is uploaded.
 
 == Changelog ==
 

@@ -21,7 +21,7 @@ class Tika_Doc_PDF_Indexer_Settings {
 	 * @access  private
 	 * @since   1.0.0
 	 */
-	private static $_instance = null; //phpcs:ignore
+	private static $instance = null; //phpcs:ignore
 
 	/**
 	 * The main plugin object.
@@ -67,6 +67,7 @@ class Tika_Doc_PDF_Indexer_Settings {
 			'placeholder' => [],
 			'value'       => [],
 			'class'       => [],
+			'checked'     => [],
 		],
 		'select' => [
 			'id'          => [],
@@ -263,6 +264,20 @@ class Tika_Doc_PDF_Indexer_Settings {
 					'default'     => '60',
 					'placeholder' => __( '60 seconds', 'tika-doc-pdf-indexer' ),
 				),
+				array(
+					'id'          => 'index_attachments',
+					'label'       => __( 'Always index attachments', 'tika-doc-pdf-indexer' ),
+					'description' => __( 'All supported attachments will be indexed. Works with the Solr Search for WP plugin to search for the Attachment Post Type', 'tika-doc-pdf-indexer' ),
+					'type'        => 'checkbox',
+					'default'     => 'on',
+				),
+				array(
+					'id'          => 'enable_tdpi_cpt',
+					'label'       => __( 'Enable Documents Custom Post type', 'tika-doc-pdf-indexer' ),
+					'description' => __( 'Enable Documents Custom Post type', 'tika-doc-pdf-indexer' ),
+					'type'        => 'checkbox',
+					'default'     => '',
+				),
 			),
 		);
 
@@ -378,10 +393,10 @@ class Tika_Doc_PDF_Indexer_Settings {
 	 * @return Main Tika_Doc_PDF_Indexer_Settings instance
 	 */
 	public static function instance( $parent ) {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self( $parent );
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self( $parent );
 		}
-		return self::$_instance;
+		return self::$instance;
 	} // End instance()
 
 	/**
