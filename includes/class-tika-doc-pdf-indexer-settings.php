@@ -19,7 +19,7 @@ class Tika_Doc_PDF_Indexer_Settings {
 	 *
 	 * @var     object
 	 * @access  private
-	 * @since   1.0.0
+	 * @since   1.0.1
 	 */
 	private static $instance = null; //phpcs:ignore
 
@@ -28,7 +28,7 @@ class Tika_Doc_PDF_Indexer_Settings {
 	 *
 	 * @var     object
 	 * @access  public
-	 * @since   1.0.0
+	 * @since   1.0.1
 	 */
 	public $parent = null;
 
@@ -37,7 +37,7 @@ class Tika_Doc_PDF_Indexer_Settings {
 	 *
 	 * @var     string
 	 * @access  public
-	 * @since   1.0.0
+	 * @since   1.0.1
 	 */
 	public $base = '';
 
@@ -46,7 +46,7 @@ class Tika_Doc_PDF_Indexer_Settings {
 	 *
 	 * @var     array
 	 * @access  public
-	 * @since   1.0.0
+	 * @since   1.0.1
 	 */
 	public $settings = array();
 
@@ -194,7 +194,7 @@ class Tika_Doc_PDF_Indexer_Settings {
 		// If you're not including an image upload then you can leave this function call out.
 		wp_enqueue_media();
 
-		wp_register_script( $this->parent->_token . '-settings-js', $this->parent->assets_url . 'js/settings' . $this->parent->script_suffix . '.js', array( 'farbtastic', 'jquery' ), '1.0.0', true );
+		wp_register_script( $this->parent->_token . '-settings-js', $this->parent->assets_url . 'js/settings' . $this->parent->script_suffix . '.js', array( 'farbtastic', 'jquery' ), '1.0.1', true );
 		wp_enqueue_script( $this->parent->_token . '-settings-js' );
 	}
 
@@ -386,7 +386,7 @@ class Tika_Doc_PDF_Indexer_Settings {
 	 *
 	 * Ensures only one instance of Tika_Doc_PDF_Indexer_Settings is loaded or can be loaded.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 * @static
 	 * @see Tika_Doc_PDF_Indexer()
 	 * @param object $parent Object instance.
@@ -402,7 +402,7 @@ class Tika_Doc_PDF_Indexer_Settings {
 	/**
 	 * Cloning is forbidden.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 */
 	public function __clone() {
 		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ), $this->parent->_version ) );
@@ -411,7 +411,7 @@ class Tika_Doc_PDF_Indexer_Settings {
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 */
 	public function __wakeup() {
 		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ), $this->parent->_version ) );

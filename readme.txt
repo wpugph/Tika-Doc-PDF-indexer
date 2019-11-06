@@ -3,7 +3,7 @@ Contributors: carl-alberto
 Tags: wordpress, plugin
 Requires at least: 4.8
 Tested up to: 5.2.3
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,10 @@ After plugin installation:
 4. If using the Pantheon Solr plugin, it will be automatically indexed by default whenever a supported file type is uploaded.
 
 == Changelog ==
+
+= 1.0.4 =
+* 2019-11-6
+* Made sure that pdf attachments when uploaded are indexed by the WP Solr plugin
 
 = 1.0.0 =
 * 2019-10-21

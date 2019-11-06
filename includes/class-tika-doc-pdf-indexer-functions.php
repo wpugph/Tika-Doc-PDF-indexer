@@ -314,3 +314,7 @@ add_action( 'save_post', 'tdpi_save_tika_meta', 1, 2 );
 // make the upload file required
 // default to upload and restric from selcting uploaded file or the recent file should be indexed.
 // Settings should file checks if correct or existing..
+
+// Deploy phpcs runners
+// use php unit testing
+// minimize ignore

@@ -159,6 +159,7 @@ class Tika_Doc_PDF_Indexer_Post_Type {
 	 */
 	public function updated_messages( $messages = array() ) {
 		global $post, $post_ID;
+		//phpcs:disable
 		$messages[ $this->post_type ] = array(
 			0  => '',
 			1  => sprintf( __( '%1$s updated. %2$sView %3$s%4$s.', 'tika-doc-pdf-indexer' ), $this->single, '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">', $this->single, '</a>' ),
@@ -172,6 +173,7 @@ class Tika_Doc_PDF_Indexer_Post_Type {
 			9  => sprintf( __( '%1$s scheduled for: %2$s. %3$sPreview %4$s%5$s.', 'tika-doc-pdf-indexer' ), $this->single, '<strong>' . date_i18n( __( 'M j, Y @ G:i', 'tika-doc-pdf-indexer' ), strtotime( $post->post_date ) ) . '</strong>', '<a target="_blank" href="' . esc_url( get_permalink( $post_ID ) ) . '">', $this->single, '</a>' ),
 			10 => sprintf( __( '%1$s draft updated. %2$sPreview %3$s%4$s.', 'tika-doc-pdf-indexer' ), $this->single, '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) . '">', $this->single, '</a>' ),
 		);
+		//phpcs:enable
 
 		return $messages;
 	}
