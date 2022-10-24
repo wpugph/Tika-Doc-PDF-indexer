@@ -2,8 +2,8 @@
 Contributors: carl-alberto
 Tags: wordpress, plugin
 Requires at least: 4.8
-Tested up to: 5.8.1
-Stable tag: 1.0.5
+Tested up to: 6.0.3
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,10 @@ After plugin installation:
 4. If using the Pantheon Solr plugin, it will be automatically indexed by default whenever a supported file type is uploaded.
 
 == Changelog ==
+
+= 1.0.6 =
+* 2022-10-24
+* Bump compatibility to WP version 6.0.3
 
 = 1.0.5 =
 * 2021-10-9
