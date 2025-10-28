@@ -3,7 +3,7 @@ Contributors: carl-alberto
 Tags: wordpress, plugin
 Requires at least: 4.8
 Tested up to: 6.8.3
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +32,7 @@ After plugin installation:
 
 == Changelog ==
 
-= 1.0.7 =
+= 1.0.8 =
 * 2025-10-29
 * Bump compatibility to WP version 6.8.3
 
