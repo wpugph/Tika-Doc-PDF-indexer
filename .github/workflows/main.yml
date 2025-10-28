@@ -1,4 +1,4 @@
-name: Deploy to WordPress.org
+name: Deploy and Release Plugin
 on:
   push:
     tags:
@@ -8,10 +8,29 @@ jobs:
     name: New tag
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Mark /github/workspace as safe
+      run: git config --global --add safe.directory /github/workspace
+
+    - name: Build
+      run: |
+        npm install
+        npm run build
+
     - name: WordPress Plugin Deploy
-      uses: 10up/action-wordpress-plugin-deploy@master
+      id: deploy
+      uses: 10up/action-wordpress-plugin-deploy@stable
+      with:
+        generate-zip: true
       env:
-        SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
         SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-        SLUG: tika-doc-pdf-indexer
+        SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+
+    - name: Create GitHub release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: ${{ github.workspace }}/${{ github.event.repository.name }}.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
