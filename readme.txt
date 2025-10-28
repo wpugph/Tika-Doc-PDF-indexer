@@ -1,9 +1,10 @@
 === Tika Doc PDF Indexer ===
+This plugin will automatically index pdf uploaded files from the media manager.
 Contributors: carl-alberto
-Tags: wordpress, plugin
+Tags: tika, indexer
 Requires at least: 4.8
 Tested up to: 6.8.3
-Stable tag: 1.0.8
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +33,7 @@ After plugin installation:
 
 == Changelog ==
 
-= 1.0.8 =
+= 1.1.0 =
 * 2025-10-29
 * Bump compatibility to WP version 6.8.3
 
