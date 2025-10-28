@@ -225,7 +225,7 @@ class Tika_Doc_PDF_Indexer {
 	 * @see Tika_Doc_PDF_Indexer()
 	 * @return Main Tika_Doc_PDF_Indexer instance
 	 */
-	public static function instance( $file = '', $version = '1.0.6' ) {
+	public static function instance( $file = '', $version = '1.0.7' ) {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self( $file, $version );
 		}
@@ -312,7 +312,7 @@ class Tika_Doc_PDF_Indexer {
 	 * @param string $file File constructor.
 	 * @param string $version Plugin version.
 	 */
-	public function __construct( $file = '', $version = '1.0.6' ) {
+	public function __construct( $file = '', $version = '1.0.7' ) {
 		$this->_version = $version;
 		$this->_token   = 'tika_doc_pdf_indexer';
 
