@@ -121,7 +121,6 @@ class Tika_Doc_PDF_Indexer_Settings {
 		'h2'     => [],
 		'em'     => [],
 		'strong' => [],
-		'th'     => [],
 		'form'   => [
 			'method'      => [],
 			'type'        => [],
@@ -416,5 +415,4 @@ class Tika_Doc_PDF_Indexer_Settings {
 	public function __wakeup() {
 		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ), $this->parent->_version ) );
 	} // End __wakeup()
-
 }

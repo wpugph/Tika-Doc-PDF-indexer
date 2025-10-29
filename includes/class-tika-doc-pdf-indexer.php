@@ -337,8 +337,4 @@ class Tika_Doc_PDF_Indexer {
 		$this->load_plugin_textdomain();
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );
 	} // End __construct ()
-
 }
-
-
-
