@@ -80,7 +80,6 @@ function tdpi_extract_data( $post_id ) {
 			tdpi_save_indexed_data( $post_id, $tika_data );
 		}
 	}
-
 }
 
 add_action( 'add_meta_boxes', 'tdpi_add_upload_file_metaboxes' );
@@ -160,7 +159,7 @@ add_filter( 'upload_mimes', 'tdpi_restrict_mimetypes' );
 function tdpi_file_upload() {
 	global $post;
 	$nonce = sanitize_text_field( wp_create_nonce( plugin_basename( __FILE__ ) ) );
-	echo '<input type="hidden" name="tdpi_nonce" id="tdpi_nonce" value="' . esc_html( $nonce ) . '" />';
+	echo '<input type="hidden" name="tdpi_nonce" id="tdpi_nonce" value="' . esc_attr( $nonce ) . '" />';
 	global $wpdb;
 	$filename   = get_post_meta( $post->ID, $key = 'tdpi_file', true );
 	$media_file = get_post_meta( $post->ID, $key = '_wp_attached_file', true );
@@ -192,7 +191,7 @@ function tdpi_file_upload() {
 			// 		// [ 'name', 'author', 'date', 'title', 'modified', 'uploadedTo', 'id', 'post__in', 'menuOrder' ]
 			// 		orderby: 'modified',
 			// 		// mime type. e.g. 'application/pdf', update this later for additinoal restricitons when uploading.
-			// 		type: [ 'application/pdf' ], 
+			// 		type: [ 'application/pdf' ],
 			// 		search: null,
 			// 	},
 
@@ -203,7 +202,7 @@ function tdpi_file_upload() {
 
 			var field = document.getElementById("tdpi_file");
 
-			field.value = url; 
+			field.value = url;
 		});
 
 		file_frame.open();
@@ -232,7 +231,7 @@ function tdpi_file_upload() {
 			name = "img_txt_id"
 			id = "img_txt_id"
 			value = "" />
-	</div>     
+	</div>
 		<?php
 
 		/**

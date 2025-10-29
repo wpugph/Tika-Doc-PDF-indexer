@@ -55,86 +55,84 @@ class Tika_Doc_PDF_Indexer_Settings {
 	 *
 	 * @var array
 	 */
-	public $allowed_htmls_form = [
-		'a'      => [
-			'href'  => [],
-			'title' => [],
-		],
-		'input'  => [
-			'id'          => [],
-			'type'        => [],
-			'name'        => [],
-			'placeholder' => [],
-			'value'       => [],
-			'class'       => [],
-			'checked'     => [],
-		],
-		'select' => [
-			'id'          => [],
-			'type'        => [],
-			'name'        => [],
-			'placeholder' => [],
-			'value'       => [],
-			'multiple'    => [],
-		],
-		'option' => [
-			'id'          => [],
-			'type'        => [],
-			'name'        => [],
-			'placeholder' => [],
-			'value'       => [],
-			'multiple'    => [],
-			'selected'    => [],
-		],
-		'label'  => [
-			'for'   => [],
-			'title' => [],
-		],
-		'span'   => [
-			'class' => [],
-			'title' => [],
-		],
-		'div'    => [
-			'class' => [],
-			'id'    => [],
-		],
-		'table'  => [
-			'scope' => [],
-			'title' => [],
-			'class' => [],
-			'role'  => [],
-		],
-		'tbody'  => [
-			'scope' => [],
-			'title' => [],
-			'class' => [],
-			'role'  => [],
-		],
-		'th'     => [
-			'scope' => [],
-			'title' => [],
-		],
-		'tr'     => [],
-		'td'     => [],
-		'p'      => [],
-		'br'     => [],
-		'h2'     => [],
-		'em'     => [],
-		'strong' => [],
-		'th'     => [],
-		'form'   => [
-			'method'      => [],
-			'type'        => [],
-			'name'        => [],
-			'placeholder' => [],
-			'value'       => [],
-			'multiple'    => [],
-			'selected'    => [],
-			'action'      => [],
-			'enctype'     => [],
-		],
-
-	];
+	public $allowed_htmls_form = array(
+		'a'      => array(
+			'href'  => array(),
+			'title' => array(),
+		),
+		'input'  => array(
+			'id'          => array(),
+			'type'        => array(),
+			'name'        => array(),
+			'placeholder' => array(),
+			'value'       => array(),
+			'class'       => array(),
+			'checked'     => array(),
+		),
+		'select' => array(
+			'id'          => array(),
+			'type'        => array(),
+			'name'        => array(),
+			'placeholder' => array(),
+			'value'       => array(),
+			'multiple'    => array(),
+		),
+		'option' => array(
+			'id'          => array(),
+			'type'        => array(),
+			'name'        => array(),
+			'placeholder' => array(),
+			'value'       => array(),
+			'multiple'    => array(),
+			'selected'    => array(),
+		),
+		'label'  => array(
+			'for'   => array(),
+			'title' => array(),
+		),
+		'span'   => array(
+			'class' => array(),
+			'title' => array(),
+		),
+		'div'    => array(
+			'class' => array(),
+			'id'    => array(),
+		),
+		'table'  => array(
+			'scope' => array(),
+			'title' => array(),
+			'class' => array(),
+			'role'  => array(),
+		),
+		'tbody'  => array(
+			'scope' => array(),
+			'title' => array(),
+			'class' => array(),
+			'role'  => array(),
+		),
+		'th'     => array(
+			'scope' => array(),
+			'title' => array(),
+		),
+		'tr'     => array(),
+		'td'     => array(),
+		'p'      => array(),
+		'br'     => array(),
+		'h2'     => array(),
+		'em'     => array(),
+		'strong' => array(),
+		'form'   => array(
+			'method'      => array(),
+			'type'        => array(),
+			'name'        => array(),
+			'placeholder' => array(),
+			'value'       => array(),
+			'multiple'    => array(),
+			'selected'    => array(),
+			'action'      => array(),
+			'enctype'     => array(),
+		),
+	);
 
 	/**
 	 * Constructor function.
@@ -416,5 +414,4 @@ class Tika_Doc_PDF_Indexer_Settings {
 	public function __wakeup() {
 		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ), $this->parent->_version ) );
 	} // End __wakeup()
-
 }

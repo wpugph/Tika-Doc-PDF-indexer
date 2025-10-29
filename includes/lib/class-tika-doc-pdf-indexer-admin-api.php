@@ -242,7 +242,7 @@ class Tika_Doc_PDF_Indexer_Admin_API {
 
 			default:
 				if ( ! $post ) {
-					$html .= '<label for="' . esc_html( $field['id'] ) . '">' . "\n";
+					$html .= '<label for="' . esc_attr( $field['id'] ) . '">' . "\n";
 				}
 
 				$html .= '<span class="description">' . $field['description'] . '</span>' . "\n";
@@ -341,7 +341,6 @@ class Tika_Doc_PDF_Indexer_Admin_API {
 		}
 
 		echo '</div>' . "\n";
-
 	}
 
 	/**
@@ -392,5 +391,4 @@ class Tika_Doc_PDF_Indexer_Admin_API {
 			}
 		}
 	}
-
 }

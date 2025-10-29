@@ -3,7 +3,7 @@ Contributors: carl-alberto
 Tags: tika, indexer
 Requires at least: 4.8
 Tested up to: 6.8.3
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,11 +32,20 @@ After plugin installation:
 3. All extracted data from the Attachment Post Type will be saved in the wp_content column.
 4. If using the Pantheon Solr plugin, it will be automatically indexed by default whenever a supported file type is uploaded.
 
+== Screenshots ==
+
+1. Tika Doc PDF Indexer Settings Page
+
 == Changelog ==
 
-= 1.1.1 =
+= 1.2.0 =
 * 2025-10-29
-* Bump compatibility to WP version 6.8.3
+* Updated PHPCS compliance
+*
+
+= 1.1.1 =
+* 2025-10-28
+* Testing the new Plugin repo deploy process.
 
 = 1.0.6 =
 * 2022-10-24
