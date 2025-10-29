@@ -32,6 +32,10 @@ After plugin installation:
 3. All extracted data from the Attachment Post Type will be saved in the wp_content column.
 4. If using the Pantheon Solr plugin, it will be automatically indexed by default whenever a supported file type is uploaded.
 
+== Screenshots ==
+
+1. Tika Doc PDF Indexer Settings Page
+
 == Changelog ==
 
 = 1.2.0 =
